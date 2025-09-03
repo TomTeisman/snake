@@ -2,9 +2,6 @@ const gridSize = 40; // here we define the size of a single grid block in px
 let gameIntervall;
 let direction = 'RIGHT';
 let snake = [
-    { x: gridSize * 5, y: gridSize * 7 },
-    { x: gridSize * 4, y: gridSize * 7 },
-    { x: gridSize * 3, y: gridSize * 7 },
     { x: gridSize * 2, y: gridSize * 7 },
     { x: gridSize, y: gridSize * 7 },
     { x: 0, y: gridSize * 7 }
