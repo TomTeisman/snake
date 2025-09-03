@@ -117,6 +117,7 @@ function drawSnake() {
     else if (collision == 'CANDY')
     {
         relocateCandy();
+        addPoints();
     };
 
     snake.unshift(head);
@@ -245,4 +246,18 @@ function checkCollision(head) {
     }
 
     return false;
+}
+
+/**
+ * Update the point count
+ */
+function addPoints() {
+    const scoreElement = document.querySelector('.score');
+    const finalScoreElement = document.querySelector('.final-score');
+
+    score = parseInt(scoreElement.innerHTML.split(':')[1]);
+    score = score + 10;
+
+    scoreElement.innerHTML = 'Score: ' + score.toString();
+    finalScoreElement.innerHTML = 'Score: ' + score.toString();
 }
