@@ -9,6 +9,7 @@ let snake = [
     { x: gridSize, y: gridSize * 7 },
     { x: 0, y: gridSize * 7 }
 ];
+let candy = { x: gridSize * 12, y: gridSize * 7 };
 
 /**
  * Add the eventlisteners for pressing keys
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function setup() {
     drawBoard();
     drawSnake();
+    drawCandy();
     startGame();
 }
 
@@ -107,15 +109,25 @@ function drawSnake() {
             break;
     }
 
+    let collision = checkCollision(head);
     // check if we died
-    if (checkCollision(head)) {
+    if (collision == 'BORDER' || collision == 'BODY')
+    {
         clearInterval(gameIntervall);
         gameOverModal.style.display = 'flex';
+    }
+    // check if we got a candy
+    else if (collision == 'CANDY')
+    {
+        relocateCandy();
     };
 
     snake.unshift(head);
-    snake.pop();
+    if (collision !== 'CANDY') {
+        snake.pop();
+    }
     drawBoard();
+    drawCandy();
 
     if (canvas.getContext) {
         ctx = canvas.getContext("2d");
@@ -129,6 +141,38 @@ function drawSnake() {
             if (b > 100) {b = b - 10}
         });
     }
+}
+
+/**
+ * Draw the candy on the board
+ */
+function drawCandy() {
+    const canvas = document.getElementById('game');
+
+    if (canvas.getContext) {
+        ctx = canvas.getContext("2d");
+
+        ctx.fillStyle = `rgb(223, 0, 0)`;
+        ctx.fillRect(candy.x, candy.y, gridSize, gridSize);
+    }
+}
+
+/**
+ * Place the candy on a new spot in the canvas
+ */
+function relocateCandy() {
+    let valid = false;
+    let x, y;
+
+    while (!valid) {
+        x = Math.floor(Math.random() * 15) * gridSize;
+        y = Math.floor(Math.random() * 15) * gridSize;
+        
+        valid = !snake.some(part => part.x === x && part.y === y);
+    }
+
+    candy.x = x;
+    candy.y = y;
 }
 
 /**
@@ -188,14 +232,19 @@ function changeDirection(key) {
 function checkCollision(head) {
     // check if we are going to collide with the border
     if (head.x < 0 || head.x >= 600 || head.y < 0 || head.y >= 600) {
-        return true;
+        return 'BORDER';
     }
 
     // check if we are going to collide with our own body
     for (let i = 0; i < snake.length; i++) {
         if (head.x === snake[i].x && head.y === snake[i].y) {
-            return true;
+            return 'BODY';
         }
+    }
+
+    // check if we are going to collide with a candy
+    if (head.x == candy.x && head.y == candy.y) {
+        return 'CANDY';
     }
 
     return false;
