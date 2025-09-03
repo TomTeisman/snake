@@ -43,6 +43,17 @@ body {
     margin: 0;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* align top edges */
+    justify-content: center; /* center everything horizontally */
+    gap: 2rem; /* space between scoreboard and game */
+    width: 100%;
+    max-width: 1000px; /* optional: prevent over-stretching */
+    margin: 0 auto;
+}
+
 .game-wrapper {
     position: relative;
     height: 600px;
@@ -103,4 +114,8 @@ body {
 
 .game-over > button:hover {
     background-color: #d8d8d8;
+}
+
+.scoreboard {
+    width: 200px; /* fix width so it doesn’t collapse */
 }

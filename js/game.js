@@ -254,10 +254,12 @@ function checkCollision(head) {
 function addPoints() {
     const scoreElement = document.querySelector('.score');
     const finalScoreElement = document.querySelector('.final-score');
+    const hiddenInput = document.querySelector('.hidden-score-field');
 
     score = parseInt(scoreElement.innerHTML.split(':')[1]);
     score = score + 10;
 
     scoreElement.innerHTML = 'Score: ' + score.toString();
     finalScoreElement.innerHTML = 'Score: ' + score.toString();
+    hiddenInput.value = score;
 }
