@@ -100,3 +100,7 @@ body {
     color: #000000;
     font-size: 18px;
 }
+
+.game-over > button:hover {
+    background-color: #d8d8d8;
+}
