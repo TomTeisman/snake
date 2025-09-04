@@ -1,6 +1,7 @@
 const gridSize = 40; // here we define the size of a single grid block in px
 let gameIntervall;
 let direction = 'RIGHT';
+let nextDirection = 'RIGHT';
 let snake = [
     { x: gridSize * 2, y: gridSize * 7 },
     { x: gridSize, y: gridSize * 7 },
@@ -91,6 +92,31 @@ function drawSnake() {
 
     let head = { x: snake[0].x, y: snake[0].y };
 
+    if (direction !== nextDirection) {
+        switch (direction) {
+            case 'RIGHT':
+                if (nextDirection !== 'LEFT') {
+                    direction = nextDirection;
+                }
+                break;
+            case 'LEFT':
+                if (nextDirection !== 'RIGHT') {
+                    direction = nextDirection;
+                }
+                break;
+            case 'UP':
+                if (nextDirection !== 'DOWN') {
+                    direction = nextDirection;
+                }
+                break;
+            case 'DOWN':
+                if (nextDirection !== 'UP') {
+                    direction = nextDirection;
+                }
+                break;
+        }
+    }
+
     switch (direction) {
         case 'RIGHT':
             head.x = head.x + gridSize;
@@ -107,6 +133,7 @@ function drawSnake() {
     }
 
     let collision = checkCollision(head);
+
     // check if we died
     if (collision == 'BODY')
     {
@@ -114,20 +141,23 @@ function drawSnake() {
         gameOverModal.style.display = 'flex';
     }
     // check if we hit the border
-    else if (collision == 'BORDER')
+    if (collision == 'BORDER')
     {
         if (direction == 'RIGHT' && head.x >= 600) {
             head.x = 0;
         } else if (direction == 'LEFT' && head.x <= 0) {
-            head.x = 600;
+            head.x = 600 - gridSize;
         } else if (direction == 'UP' && head.y <= 0) {
-            head.y = 600;
+            head.y = 600 - gridSize;
         } else if (direction == 'DOWN' && head.y >= 600) {
             head.y = 0;
         }
+
+        // check again for collision on the other side as we relocated
+        collision = checkCollision(head);
     }
     // check if we got a candy
-    else if (collision == 'CANDY')
+    if (collision == 'CANDY')
     {
         relocateCandy();
         addPoints();
@@ -194,43 +224,27 @@ function relocateCandy() {
 function changeDirection(key) {
     switch (key) {
         case 'ArrowUp':
-        case 'W': 
+        case 'W':
         case 'w':
-            if (direction !== 'DOWN') {   
-                direction = 'UP';
-            }
+            nextDirection = 'UP';
             break;
         
         case 'ArrowDown':
         case 'S':
         case 's':
-            if (direction !== 'UP') {   
-                direction = 'DOWN';
-            }
+            nextDirection = 'DOWN';
             break;
         
         case 'ArrowLeft':
         case 'A':
         case 'a':
-            if (direction !== 'RIGHT') {   
-                direction = 'LEFT';
-            }
+            nextDirection = 'LEFT';
             break;
 
         case 'ArrowRight':
-        case 'D': 
+        case 'D':
         case 'd':
-            if (direction !== 'LEFT') {   
-                direction = 'RIGHT';
-            }
-            break;
-
-        default:
-            if (direction !== 'LEFT') {   
-                direction = 'RIGHT';
-            } else {
-                direction = 'UP';
-            }
+            nextDirection = 'RIGHT';
             break;
     }
 }
