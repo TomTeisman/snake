@@ -22,7 +22,7 @@ class DB
     }
 
     /**
-     * Insert a new entry to the database
+     * Add a new entry to the database
      * 
      * @param  int  $score
      */
