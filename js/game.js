@@ -50,7 +50,7 @@ function startGame() {
         if (index < 0) {
             clearInterval(timer);
             countdown.style.display = 'none';
-            gameIntervall = setInterval(drawSnake, 200);
+            gameIntervall = setInterval(drawSnake, 150);
         }
     }, 1000);
 }
@@ -108,10 +108,23 @@ function drawSnake() {
 
     let collision = checkCollision(head);
     // check if we died
-    if (collision == 'BORDER' || collision == 'BODY')
+    if (collision == 'BODY')
     {
         clearInterval(gameIntervall);
         gameOverModal.style.display = 'flex';
+    }
+    // check if we hit the border
+    else if (collision == 'BORDER')
+    {
+        if (direction == 'RIGHT' && head.x >= 600) {
+            head.x = 0;
+        } else if (direction == 'LEFT' && head.x <= 0) {
+            head.x = 600;
+        } else if (direction == 'UP' && head.y <= 0) {
+            head.y = 600;
+        } else if (direction == 'DOWN' && head.y >= 600) {
+            head.y = 0;
+        }
     }
     // check if we got a candy
     else if (collision == 'CANDY')

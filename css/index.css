@@ -11,7 +11,8 @@ h4,
 h5,
 h6,
 p,
-button {
+button,
+ol {
     font-family: 'Asimovian', sans-serif;
 }
 
@@ -117,5 +118,16 @@ body {
 }
 
 .scoreboard {
+    position: absolute;
+    left: 15%;
     width: 200px; /* fix width so it doesn’t collapse */
+}
+
+.scoreboard > h2 {
+    margin: 0;
+}
+
+.scoreboard > ol {
+    margin: 0;
+    padding-left: 1rem;
 }
