@@ -3,10 +3,6 @@ include 'DB.php';
 
 $db = new DB();
 
-if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-    $db->insertNewScore($_POST['score']);
-}
-
 $scores = $db->getScores();
 ?>
 
@@ -43,7 +39,7 @@ $scores = $db->getScores();
     <div class="wrapper">
         <div class="scoreboard">
             <h2>Scoreboard</h2>
-            <ol>
+            <ol class="score-list">
                 <?php
                 if (!empty($scores)) {
                     $i = 0;
@@ -61,12 +57,11 @@ $scores = $db->getScores();
         <div class="game-wrapper">
             <canvas id="game" width="600" height="600"></canvas>
             <p id="countdown">3</p>
-            <form class="game-over" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <div class="game-over">
                 <h2>Game over!</h2>
-                <input class="hidden-score-field" type="hidden" name="score" value="0">
                 <p class="final-score">Score: 0</p>
-                <button type="submit">Retry</button>
-            </form>
+                <button onclick="location.reload()">Retry</button>
+            </div>
         </div>
     </div>
 </body>

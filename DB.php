@@ -31,6 +31,8 @@ class DB
         $statement = $this->pdo->prepare("INSERT INTO `scores` (`score`) VALUES (:score);");
         $statement->bindParam(':score', $score, PDO::PARAM_INT);
         $statement->execute();
+        $id = $this->pdo->lastInsertId();
+        return $id;
     }
 
     /**
@@ -40,6 +42,21 @@ class DB
     {
         $statement = $this->pdo->prepare("SELECT * FROM `scores` ORDER BY `score` DESC;");
         $statement->execute();
-        return $statement->fetchAll();
+        
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Update an entry in the database
+     * 
+     * @param  int  $score
+     * @param  int  $id
+     */
+    public function updateScore(int $score, int $id)
+    {
+        $statement = $this->pdo->prepare("UPDATE `scores` SET `score` = :score WHERE `id` = :id");
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':score', $score, PDO::PARAM_INT);
+        $statement->execute();
     }
 }
