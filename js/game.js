@@ -277,7 +277,7 @@ function checkCollision(head) {
 /**
  * Update the point count
  */
-function addPoints() {
+async function addPoints() {
 	const scoreElement = document.querySelector(".score");
 	const finalScoreElement = document.querySelector(".final-score");
     let score = null;
@@ -289,7 +289,6 @@ function addPoints() {
 	finalScoreElement.innerHTML = "Score: " + score.toString();
 
 	saveScore(score);
-	fetchScore();
 }
 
 /**
@@ -299,36 +298,33 @@ async function saveScore(score) {
     if (isSaving) return;
     isSaving = true;
 
-    if (scoreId !== null) {
-        try {
-            await fetch("queries/update-score.php", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: "score=" + encodeURIComponent(score) + '&' + "id=" + encodeURIComponent(scoreId) 
-            });
-        } catch (error) {
-            console.error('Error when updating score: ' + error);
-        }
-    } else {
-        try {
-            let response = await fetch("queries/save-score.php", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: "score=" + encodeURIComponent(score)
-            });
-            
-            let result = await response.json();
-            scoreId = result.id;
-        } catch (error) {
-            console.error('Error when saving score: ' + error);
-        }
-    }
+	try {
+		if (scoreId !== null) {
+			await fetch('queries/update-score.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'score=' + encodeURIComponent(score) + '&id=' + encodeURIComponent(scoreId)
+			});
+		} else {
+			let response = await fetch('queries/save-score.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'score=' + encodeURIComponent(score)
+			})
+
+			let result = await response.json();
+			scoreId = result.id;
+		}
+	} catch (error) {
+		console.error('Error when saving score: ' + error);
+	}
 
     isSaving = false;
+	fetchScore();
 }
 
 /**
