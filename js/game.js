@@ -156,12 +156,14 @@ function drawSnake() {
 	if (collision == "CANDY") {
 		relocateCandy();
 		addPoints();
+		updatePosition();
 	}
 
 	snake.unshift(head);
 	if (collision !== "CANDY") {
 		snake.pop();
 	}
+
 	drawBoard();
 	drawCandy();
 
@@ -343,4 +345,25 @@ async function fetchScore() {
 			i++;
 		}
 	});
+}
+
+/**
+ * We update the current position of the player
+ */
+async function updatePosition() {
+	const positionElement = document.querySelector(".position");
+	const scoreElement = document.querySelector(".score");
+	let currentScore = parseInt(scoreElement.textContent.replace(/[^0-9]/g, ''), 10);
+
+	let response = await fetch("queries/fetch-score.php");
+	let scoreList = await response.json();
+
+	let rank = 1;
+	scoreList.forEach(score => {
+		if (parseInt(score.score) > currentScore) {
+			rank++;
+		}
+	});
+
+	positionElement.innerHTML = 'Position: #' + rank;
 }

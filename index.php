@@ -31,7 +31,7 @@ $scores = $db->getScores();
 
 <body onload="setup()">
     <div class="top-wrapper">
-        <p>Position: #1</p>
+        <p class="position">Position: #1</p>
         <h1>Snake</h1>
         <p class="score">Score: 0</p>
     </div>
