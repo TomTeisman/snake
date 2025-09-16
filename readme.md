@@ -17,7 +17,7 @@ Je kan de slang besturen door middel van de pijltjes toetsen (↑←↓→) of m
 - Rechts (→ / D)
 
 >
-> Let op: De slang kan niet direct omkeren (bijvoorbeeld van rechts meteen naar links)
+> Let op: De slang kan niet 180 graden draaien (bijvoorbeeld van rechts meteen naar links)
 >
 
 3. Snoepjes eten  
@@ -28,8 +28,8 @@ Je kan de slang besturen door middel van de pijltjes toetsen (↑←↓→) of m
 - Het speelveld eindigt niet, als je de rand raakt kom je aan de andere kant weer terug
 
 5. Game Over
-- Het spel stopt als de slang tegen zijn eigen lichaam botst.
-- Er verschijnt een scherm met je eindscore en een retry knop.
+- Het spel stopt als de slang tegen zijn eigen lichaam botst
+- Er verschijnt een scherm met je eindscore en een retry knop
 
 ## Score & Ranglijst
 - Elk snoepje geeft 10 punten
