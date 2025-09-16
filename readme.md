@@ -10,7 +10,7 @@ Na het opstarten van het spel begint er een korte timer af te tellen. Zodra de t
 voorbij is begint de slang te bewegen.
 
 2. Besturing  
-Je kan de slang besturen door middel van de pijltjes toesten (↑←↓→) of met behulp van WASD.
+Je kan de slang besturen door middel van de pijltjes toetsen (↑←↓→) of met behulp van WASD.
 - Omhoog (↑ / W)
 - Links (← / A)
 - Omlaag (↓ / S)
