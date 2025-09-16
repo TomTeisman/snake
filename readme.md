@@ -33,6 +33,6 @@ Je kan de slang besturen door middel van de pijltjes toetsen (↑←↓→) of m
 
 ## Score & Ranglijst
 - Elk snoepje geeft 10 punten
-- Je score word automatisch opgeslagen
+- Je score wordt automatisch opgeslagen
 - De top 10 scores worden weergeven in het scorebord
-- Je huidige positie in de ranglijst word live bijgewerkt
+- Je huidige positie in de ranglijst wordt live bijgewerkt
