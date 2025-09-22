@@ -78,7 +78,8 @@ body {
     width: 70px;
 }
 
-.game-over {
+.game-over,
+.game-start {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -96,11 +97,13 @@ body {
     border-radius: 8px;
 }
 
-.game-over > h2 {
+.game-over > h2,
+.game-start > h2 {
     margin: 0;
 }
 
-.game-over > button {
+.game-over > button,
+.game-start > button {
     cursor: pointer;
     height: 35px;
     width: 125px;
@@ -113,8 +116,24 @@ body {
     font-size: 18px;
 }
 
-.game-over > button:hover {
+.game-over > button:hover,
+.game-start > button:hover {
     background-color: #d8d8d8;
+}
+
+.game-start {
+    display: flex;
+}
+
+.game-start > input {
+    padding-inline: .5rem;
+    padding-block: .25rem;
+    border: 1px solid #fefefe;
+    border-radius: 3px;
+}
+
+.game-start > input:focus {
+    outline: 1px solid #fefefe;
 }
 
 .scoreboard {

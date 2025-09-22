@@ -24,12 +24,14 @@ class DB
     /**
      * Add a new entry to the database
      * 
-     * @param  int  $score
+     * @param  int     $score
+     * @param  string  $username
      */
-    public function insertNewScore(int $score)
+    public function insertNewScore(int $score, string $username)
     {
-        $statement = $this->pdo->prepare("INSERT INTO `scores` (`score`) VALUES (:score);");
+        $statement = $this->pdo->prepare("INSERT INTO `scores` (`score`, `username`) VALUES (:score, :username);");
         $statement->bindParam(':score', $score, PDO::PARAM_INT);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
         $statement->execute();
         $id = $this->pdo->lastInsertId();
         return $id;

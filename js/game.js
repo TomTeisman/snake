@@ -10,6 +10,7 @@ let snake = [
 let candy = { x: gridSize * 12, y: gridSize * 7 };
 let scoreId = null;
 let isSaving = false;
+let username = '';
 
 /**
  * Add the eventlisteners for pressing keys
@@ -19,8 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "W", "A", "S", "D", "w", "a", "s", "d"];
 
 	this.addEventListener("keydown", (event) => {
-		if (keys.includes(event.key)) {
-			changeDirection(event.key);
+		if (username !== '') {
+			if (keys.includes(event.key)) {
+				changeDirection(event.key);
+			}
 		}
 	});
 });
@@ -32,15 +35,19 @@ function setup() {
     drawBoard();
 	drawSnake();
 	drawCandy();
-	startGame();
 }
 
 /**
  * Start the game
  */
 function startGame() {
+	const userInput = document.getElementById("username");
+	const gameStartModal = document.querySelector(".game-start");
 	const countdown = document.getElementById("countdown");
 	let index = 2;
+
+	username = userInput.value;
+	gameStartModal.style.display = "none";
 
 	const timer = setInterval(function () {
 		countdown.innerHTML = index;
@@ -315,8 +322,8 @@ async function saveScore(score) {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				body: 'score=' + encodeURIComponent(score)
-			})
+				body: 'score=' + encodeURIComponent(score) + '&username=' + encodeURIComponent(username)
+			});
 
 			let result = await response.json();
 			scoreId = result.id;
@@ -341,7 +348,7 @@ async function fetchScore() {
 	scoreboardList.innerHTML = "";
 	scores.forEach((score) => {
 		if (i < 10) {
-			scoreboardList.innerHTML += "<li>" + score.score + "</li>";
+			scoreboardList.innerHTML += "<li>" + score.score + ' - ' + score.username + "</li>";
 			i++;
 		}
 	});

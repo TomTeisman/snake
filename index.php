@@ -45,7 +45,7 @@ $scores = $db->getScores();
                     $i = 0;
                     foreach ($scores as $score) {
                         if ($i < 10) {
-                            echo "<li>" . $score['score'] . "</li>";
+                            echo "<li>" . $score['score'] . " - " . $score['username'] . "</li>";
                             $i++;
                         }
                     }
@@ -61,6 +61,12 @@ $scores = $db->getScores();
                 <h2>Game over!</h2>
                 <p class="final-score">Score: 0</p>
                 <button onclick="location.reload()">Retry</button>
+            </div>
+
+            <div class="game-start">
+                <h2>Snake</h2>
+                <input name="username" id="username" placeholder="Username" />
+                <button type="button" onclick="startGame()">Start</button>
             </div>
         </div>
     </div>
