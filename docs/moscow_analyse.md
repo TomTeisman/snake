@@ -16,4 +16,3 @@ _Could have:_
 
 _Won’t have:_
 -	Het spel bevat verschillende gamemodes.
-
