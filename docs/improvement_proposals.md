@@ -1,3 +1,4 @@
+# Verbetervoorstellen
 _Testresultaten:_
 1. Laat het aftellen achterwegen en begin in plaats daarvan op de gebruikers eerste input.
 2. Laat de score die opgeteld wordt zien op de plek van het snoepje wordt gegeten zodat de gebruiker goed kan zien wat dit opleverd.
