@@ -45,7 +45,7 @@ $scores = $db->getScores();
                     $i = 0;
                     foreach ($scores as $score) {
                         if ($i < 10) {
-                            echo "<li>" . $score['score'] . " - " . $score['username'] . "</li>";
+                            echo "<li>" . htmlspecialchars($score['score']) . " - " . htmlspecialchars($score['username']) . "</li>";
                             $i++;
                         }
                     }

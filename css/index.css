@@ -150,3 +150,7 @@ body {
     margin: 0;
     padding-left: 1rem;
 }
+
+.scoreboard > ol > li {
+    text-wrap: nowrap;
+}
