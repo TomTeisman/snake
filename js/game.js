@@ -69,9 +69,11 @@ function drawBoard() {
 	if (canvas.getContext) {
 		const ctx = canvas.getContext("2d");
 
+		let amountOfRowsAndColumns = 600 / gridSize;
+
 		// we draw the grid pattern
-		for (let row = 0; row < 15; row++) {
-			for (let col = 0; col < 15; col++) {
+		for (let row = 0; row < amountOfRowsAndColumns; row++) {
+			for (let col = 0; col < amountOfRowsAndColumns; col++) {
 				let x = Math.floor(gridSize * col);
 				let y = Math.floor(gridSize * row);
 
