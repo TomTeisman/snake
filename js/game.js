@@ -66,10 +66,10 @@ function startGame() {
  */
 function drawBoard() {
 	const canvas = document.getElementById("game");
+	let amountOfRowsAndColumns = 600 / gridSize;
+
 	if (canvas.getContext) {
 		const ctx = canvas.getContext("2d");
-
-		let amountOfRowsAndColumns = 600 / gridSize;
 
 		// we draw the grid pattern
 		for (let row = 0; row < amountOfRowsAndColumns; row++) {
