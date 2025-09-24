@@ -7,12 +7,12 @@ _Testresultaten:_
 5. Verhoog het contrast met de achtergrond, op dit moment zou de game over pop-up moeilijk te zien kunnen zijn voor iemand met slechter zicht.
 
 _Docent:_
-1. Voeg een gebruikersnaam toe aan het scorebord om bij te houden welke score van wie is
-2. Voeg een tijdsdruk toe om te voorkomen dat mensen eindeloos door kunnen gaan
+1. Voeg een gebruikersnaam toe aan het scorebord om bij te houden welke score van wie is.
+2. Voeg een tijdsdruk toe om te voorkomen dat mensen eindeloos door kunnen gaan.
 
 _Peerfeedback:_
-1. Soms word het snoepje onder het lichaam van de snake geplaatst waardoor je deze niet kan zien
-2. XSS is mogelijk door code te injecteren in het username veld
+1. Soms word het snoepje onder het lichaam van de snake geplaatst waardoor je deze niet kan zien.
+2. XSS is mogelijk door code te injecteren in het username veld.
 
 _Andere bron:_
-1. Voeg geluiden toe om de game interessanter te maken
+1. Voeg geluiden toe om de game interessanter te maken.
